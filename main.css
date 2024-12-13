@@ -62,6 +62,11 @@ main {
   max-width: 75%;
 }
 
+/* Overwrite some bootstrap classes */
+.btn-light {
+  background-color: var(--background-color-primary);
+}
+
 /* Website Logo */
 .lpp-main_website-title {
   font-size: 1.75rem;
@@ -84,14 +89,40 @@ main {
 }
 
 /** Form styles **/
-
 .lpp-main_select-container {
   min-width: 195px;
 }
-.lpp-main_select-container button, 
-.lpp-main_select-container ul {
-  display: flex;
-  align-items: center;
+.lpp-main_select-container button {
+  border-bottom: transparent;
   padding: 16px;
   width: 100%;
+}
+.lpp-main_select-container .lpp_select-list {
+  display: none;
+  flex-direction: column;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
+  background: var(--background-color-primary);
+  padding: 16px;
+  width: 100%;
+  list-style-type: none;
+}
+.lpp-main_select-container .lpp_select-list li {
+  width: 100%;
+  padding: 6px 0;
+}
+
+.lpp-main_select-container button,
+.lpp-main_select-container.active .lpp_select-list {
+  display: flex;
+  align-items: center;
+}
+
+.lpp-main_select-container.active button {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius:  0;
+}
+
+.lpp-main_select-container.active button svg {
+  transform: rotate(180deg);
 }
