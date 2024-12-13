@@ -37,6 +37,8 @@
   --font-color-secondary: #FFFFFF;
   --font-color-tertiary: #FFD15B;
 
+  --acent-color-primary: #C6C6C6;
+
   --background-color-primary: #FFFFFF;
   --background-color-secondary: #000000;
   --background-color-tertiary: #1B1B1B;
@@ -88,13 +90,12 @@ main {
   padding: 2px;
 }
 
-/** Form styles **/
+/** Select styles **/
 .lpp-main_select-container {
   min-width: 195px;
-  position: relative;
+  margin-right: 66px;
 }
 .lpp-main_select-container button {
-  position: absolute;
   display: flex;
   align-items: center;
   border-bottom: transparent;
@@ -102,26 +103,29 @@ main {
   width: 100%;
   z-index: 5;
 }
-.lpp-main_select-container .lpp_select-list {
+.lpp-main_select-container .lpp_select-content {
   display: none;
   align-items: center;
-  margin-top: 57px;
   flex-direction: column;
   border-bottom-left-radius: 11px;
   border-bottom-right-radius: 11px;
   background: var(--background-color-primary);
   padding: 16px;
   width: 100%;
-  list-style-type: none;
-  padding: 0;
 }
 .lpp-main_select-container .lpp_select-list li {
   width: 100%;
-  padding: 6px 16px;
+  padding: 6px 0;
 }
 
-.lpp-main_select-container.active .lpp_select-list {
-  display: flex;
+.lpp-main_select-container .lpp_select-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+.lpp-main_select-container.active .lpp_select-content {
+  display: block;
+  box-sizing: border-box;
 }
 
 .lpp-main_select-container.active button {
@@ -133,4 +137,24 @@ main {
 }
 .lpp-main_select-container.active button svg {
   transform: rotate(180deg);
+}
+
+.lpp-main_select-search-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--acent-color-primary);
+  border-radius: 2px;
+  padding-right: 8px;
+  width: 163px;
+}
+.lpp-main_select-search-input input {
+  color: var(--acent-color-primary);
+  border: none;
+  padding: 8px;
+  display: block;
+  width: 100%;
+}
+.lpp-main_select-search-input svg {
+  color: var(--acent-color-primary);
+  width: 0.8438rem;
 }

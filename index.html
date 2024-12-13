@@ -35,7 +35,7 @@
             </svg>
           </button>           
           <div class="input-group-append">
-            <button class="btn lpp-index_form-search-cta" type="button">
+            <button class="btn lpp-index_form-search-cta" type="submit">
               <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="10" cy="10.4219" r="9.5" stroke="white"/>
                 <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="white"/>
@@ -55,15 +55,59 @@
             <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round"/>
           </svg>
         </button>
-        <ul class="lpp_select-list">
-          <li>ing 1</li>
-          <li>ing 2</li>
-          <li>ing 3</li>
-        </ul>
+        <div class="lpp_select-content">
+          <label class="lpp-main_select-search-input" for="input-select_ingredients-search">
+            <input type="text" id="input-select_ingredients-search" name="inputSelectIngredientsSearch">
+            <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10.4219" r="9.5" stroke="currentColor"/>
+              <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="currentColor"/>
+            </svg>
+          </label>
+          <ul class="lpp_select-list">
+          </ul>
+        </div>
+      </div>
+      <div class="lpp-main_select-container" id="input-select_appliance">
+        <button type="button" class="btn btn-light">
+          <span class="me-auto">Appareils</span>
+          <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="lpp_select-content">
+          <label class="lpp-main_select-search-input" for="input-select_appliance-search">
+            <input type="text" id="input-select_appliance-search" name="inputSelectApplianceSearch">
+            <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10.4219" r="9.5" stroke="currentColor"/>
+              <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="currentColor"/>
+            </svg>
+          </label>
+          <ul class="lpp_select-list">
+          </ul>
+        </div>
+      </div>
+      <div class="lpp-main_select-container" id="input-select_ustensils">
+        <button type="button" class="btn btn-light">
+          <span class="me-auto">Ustensiles</span>
+          <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="lpp_select-content">
+          <label class="lpp-main_select-search-input" for="input-select_ustensils-search">
+            <input type="text" id="input-select_ustensils-search" name="inputSelectUstensilsSearch">
+            <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10.4219" r="9.5" stroke="currentColor"/>
+              <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="currentColor"/>
+            </svg>
+          </label>
+          <ul class="lpp_select-list">
+          </ul>
+        </div>
       </div>
       <h3 class="ms-auto h4">xxxx recettes</h3>
     </form>
   </main>
-  <script src="./scripts/pages/index.js" type="module" async></script>
+  <script src="./scripts/pages/IndexPage.js" type="module" async></script>
 </body>
 </html>

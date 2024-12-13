@@ -17,7 +17,7 @@ export default class FormSelectEvents {
   }
  
   /**
-   * @private Button click event handler
+   * @public Button click event handler
    * @param {MouseEvent} e Event object
    */
   buttonClickEvent(e) {
@@ -25,8 +25,22 @@ export default class FormSelectEvents {
     this.#toggleActive();
   }
 
+  /**
+   * @public Outside click event handler
+   * @param {MouseEvent} e Event object
+   */
+  outsideClickEvent(e) {
+    e.preventDefault();
+    if (e.target !== this.#containerDOM && !this.#containerDOM.contains(e.target))
+      this.#disable();   
+  }
+
   #toggleActive() {
     this.#containerDOM.classList.toggle("active");
+  }
+
+  #disable() {
+    this.#containerDOM.classList.remove("active");
   }
 
   /**
@@ -35,9 +49,11 @@ export default class FormSelectEvents {
   createEvents() {
     // Binding instance of this in the event handler
     this.buttonClickEvent = this.buttonClickEvent.bind(this);
+    this.outsideClickEvent = this.outsideClickEvent.bind(this);
 
     // Creating event listeners
     this.#selectButtonDOM.addEventListener("click", this.buttonClickEvent)
+    document.addEventListener("click", this.outsideClickEvent)
   }
 
 }
