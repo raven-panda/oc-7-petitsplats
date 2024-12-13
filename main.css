@@ -91,14 +91,21 @@ main {
 /** Form styles **/
 .lpp-main_select-container {
   min-width: 195px;
+  position: relative;
 }
 .lpp-main_select-container button {
+  position: absolute;
+  display: flex;
+  align-items: center;
   border-bottom: transparent;
   padding: 16px;
   width: 100%;
+  z-index: 5;
 }
 .lpp-main_select-container .lpp_select-list {
   display: none;
+  align-items: center;
+  margin-top: 57px;
   flex-direction: column;
   border-bottom-left-radius: 11px;
   border-bottom-right-radius: 11px;
@@ -106,23 +113,24 @@ main {
   padding: 16px;
   width: 100%;
   list-style-type: none;
+  padding: 0;
 }
 .lpp-main_select-container .lpp_select-list li {
   width: 100%;
-  padding: 6px 0;
+  padding: 6px 16px;
 }
 
-.lpp-main_select-container button,
 .lpp-main_select-container.active .lpp_select-list {
   display: flex;
-  align-items: center;
 }
 
 .lpp-main_select-container.active button {
   border-bottom-left-radius: 0;
   border-bottom-right-radius:  0;
 }
-
+.lpp-main_select-container button svg {
+  transition: transform ease-in-out 0.1s;
+}
 .lpp-main_select-container.active button svg {
   transform: rotate(180deg);
 }
