@@ -41,6 +41,7 @@
   --background-color-secondary: #000000;
   --background-color-tertiary: #1B1B1B;
   --background-color-quaternary: #FFD15B;
+  --background-color-fifth: #EDEDED;
 }
 
 /************************************************/
@@ -49,24 +50,48 @@
 
 body {
   font-family: "Manrope", sans-serif;
+  background-color: var(--background-color-fifth);
+  min-height: 100vh;
 }
 
 h1, h2, h3 {
   font-family: "Anton", sans-serif;
 }
 
+main {
+  max-width: 75%;
+}
+
 /* Website Logo */
 .lpp-main_website-title {
   font-size: 1.75rem;
-  display: flex;
-  align-items: center;
   text-decoration: none;
   color: var(--font-color-secondary);
 }
 
 .lpp-main_website-logo {
   display: block;
-  background: var(--background-color-secondary);
   width: 1.375rem;
   height: 1.375rem;
+  padding: 2px;
+}
+
+.lpp-main_website-logo-layer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+}
+
+/** Form styles **/
+
+.lpp-main_select-container {
+  min-width: 195px;
+}
+.lpp-main_select-container button, 
+.lpp-main_select-container ul {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  width: 100%;
 }

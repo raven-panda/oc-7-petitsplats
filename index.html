@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,13 +14,22 @@
 </head>
 <body>
   <header class="lpp-index_page-header">
-    <h1><a href="index.html" class="lpp-main_website-title">LES PETITS PLATS<i class="lpp-main_website-logo rounded-circle"></i></a></h1>
-    <section class="d-flex flex-column m-auto">
+    <a href="index.html" class="lpp-main_website-title d-flex align-items-center">
+      <h1 class="m-0">LES PETITS PLATS</h1>
+      <i class="lpp-main_website-logo rounded-circle bg-black ms-1">
+        <i class="lpp-main_website-logo-layer rounded-circle bg-white">
+          <i class="lpp-main_website-logo-layer rounded-circle bg-black">
+            <i class="lpp-main_website-logo-layer rounded-circle bg-white"></i>
+          </i>
+        </i>
+      </i>
+    </a>
+    <section class="d-flex flex-column m-auto w-100">
       <h2 class="text-center" tabindex="0">CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h2>
       <form action="#" method="get">
         <div class="input-group mb-3 lpp-index_form-control">
           <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Rechercher une recette, un ingrédient, et cetera" aria-describedby="basic-addon2">
-          <button type="button" class="btn outline-none">
+          <button type="button" class="btn outline-none d-none">
             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -37,5 +46,21 @@
       </form>
     </section>
   </header>
+  <main class="m-auto py-4">
+    <form class="d-flex" action="">
+      <div class="lpp-main_select-container">
+        <button type="button" class="btn btn-light">
+          <span class="me-auto">Ingrédients</span>
+          <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <ul>
+
+        </ul>
+      </div>
+      <h3 class="ms-auto h4">xxxx recettes</h3>
+    </form>
+  </main>
 </body>
 </html>
