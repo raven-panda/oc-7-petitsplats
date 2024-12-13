@@ -1,0 +1,46 @@
+header.lpp-index_page-header {
+  background-image: url("../assets/pictures/lampos-aritonang-24gR_9lCdes-unsplash\ 1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px 69px;
+}
+
+header.lpp-index_page-header section {  
+  padding: 119px;
+  max-width: 954px;
+}
+
+header.lpp-index_page-header h2 {
+  color: var(--font-color-tertiary);
+  font-size: 2.625rem;
+  line-height: 4.125rem;
+}
+
+.lpp-index_form-control {
+  background-color: var(--background-color-primary);
+  border-radius: 11px;
+  padding: 11px;
+  flex-wrap: nowrap;
+}
+
+.lpp-index_form-control input {
+  border: none;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.lpp-index_form-search-cta {
+  transition: all ease-in-out 0.2s;
+  height: 51px;
+  border: none;
+  background-color: var(--background-color-tertiary);
+}
+
+.lpp-index_form-search-cta:hover, .lpp-index_form-search-cta:focus-visible {
+  background-color: var(--background-color-quaternary);
+}
+
+.lpp-index_form-search-cta:active {
+  background-color: var(--background-color-quaternary) !important;
+  filter: brightness(0.9);
+}
