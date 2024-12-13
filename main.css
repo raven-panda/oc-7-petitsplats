@@ -37,7 +37,8 @@
   --font-color-secondary: #FFFFFF;
   --font-color-tertiary: #FFD15B;
 
-  --acent-color-primary: #C6C6C6;
+  --accent-color-primary: #C6C6C6;
+  --accent-color-secondary: #7A7A7A;
 
   --background-color-primary: #FFFFFF;
   --background-color-secondary: #000000;
@@ -68,6 +69,13 @@ main {
 .btn-light {
   background-color: var(--background-color-primary);
 }
+.card-body {
+  padding: 32px 25px;
+}
+.card-title {
+  font-family: "Anton", sans-serif;
+  font-size: 1.125rem;
+}
 
 /* Website Logo */
 .lpp-main_website-title {
@@ -92,6 +100,7 @@ main {
 
 /** Select styles **/
 .lpp-main_select-container {
+  position: relative;
   min-width: 195px;
   margin-right: 66px;
 }
@@ -101,9 +110,9 @@ main {
   border-bottom: transparent;
   padding: 16px;
   width: 100%;
-  z-index: 5;
 }
 .lpp-main_select-container .lpp_select-content {
+  position: absolute;
   display: none;
   align-items: center;
   flex-direction: column;
@@ -112,6 +121,7 @@ main {
   background: var(--background-color-primary);
   padding: 16px;
   width: 100%;
+  z-index: 2;
 }
 .lpp-main_select-container .lpp_select-list li {
   width: 100%;
@@ -142,19 +152,19 @@ main {
 .lpp-main_select-search-input {
   display: flex;
   align-items: center;
-  border: 1px solid var(--acent-color-primary);
+  border: 1px solid var(--accent-color-primary);
   border-radius: 2px;
   padding-right: 8px;
   width: 163px;
 }
 .lpp-main_select-search-input input {
-  color: var(--acent-color-primary);
+  color: var(--accent-color-primary);
   border: none;
   padding: 8px;
   display: block;
   width: 100%;
 }
 .lpp-main_select-search-input svg {
-  color: var(--acent-color-primary);
-  width: 0.8438rem;
+  color: var(--accent-color-secondary);
+  width: 1rem;
 }

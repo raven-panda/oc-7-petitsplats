@@ -47,7 +47,7 @@
     </section>
   </header>
   <main class="m-auto py-4">
-    <form class="d-flex" action="">
+    <form class="d-flex" action="#">
       <div class="lpp-main_select-container" id="input-select_ingredients">
         <button type="button" class="btn btn-light">
           <span class="me-auto">Ingrédients</span>
@@ -107,6 +107,33 @@
       </div>
       <h3 class="ms-auto h4">xxxx recettes</h3>
     </form>
+    <section class="lpp-index_recipes-list">
+      <article class="lpp-index_recipe-card card">
+        <img class="card-img-top object-fit-cover" src="./assets/pictures/recipes/Recette01.jpg" alt="Recette 1" width="380" height="253">
+        <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <h5 class="lpp_card-subtitle">Recettes</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+          <section class="lpp_card-ingredients-container">
+            <h5 class="lpp_card-subtitle">Ingrédients</h5>
+            <div class="lpp_card-ingredients">
+              <div>
+                <p class="lpp_card-ingredient-name">Ingrédient 1</p>
+                <p class="lpp_card-ingredient-amount">1</p>
+              </div>
+              <div>
+                <p class="lpp_card-ingredient-name">Ingrédient 2</p>
+                <p class="lpp_card-ingredient-amount">0.5g</p>
+              </div>
+              <div>
+                <p class="lpp_card-ingredient-name">Ingrédient 3</p>
+                <p class="lpp_card-ingredient-amount">4 cuillères</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
   </main>
   <script src="./scripts/pages/IndexPage.js" type="module" async></script>
 </body>
