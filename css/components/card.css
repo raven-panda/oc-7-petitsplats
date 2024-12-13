@@ -36,3 +36,7 @@
 .lpp_card-ingredient-name, .lpp_card-ingredient-amount {
   margin: 0;
 }
+
+.lpp_card-ingredient-amount {
+  color: var(--accent-color-secondary);
+}

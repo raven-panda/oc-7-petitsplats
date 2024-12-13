@@ -27,7 +27,7 @@
       <h2 class="text-center" tabindex="0">CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h2>
       <form action="#" method="get" id="recipes-search-all-form">
         <div class="input-group mb-3 lpp_form-control">
-          <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Rechercher une recette, un ingrédient, et cetera" aria-describedby="basic-addon2">
+          <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Rechercher une recette, un ingrédient, et cetera">
           <button type="button" class="btn outline-none d-none">
             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -46,7 +46,7 @@
     </section>
   </header>
   <main class="m-auto py-4">
-    <form class="d-flex" action="#">
+    <nav class="d-flex">
       <div class="lpp_select-container" id="input-select_ingredients">
         <button type="button" class="btn btn-light">
           <span class="me-auto">Ingrédients</span>
@@ -105,8 +105,8 @@
         </div>
       </div>
       <h3 class="ms-auto h4">xxxx recettes</h3>
-    </form>
-    <section class="lpp_recipes-list">
+    </nav>
+    <div class="lpp_recipes-list">
       <article class="lpp_recipe-card card">
         <img class="card-img-top object-fit-cover" src="./assets/pictures/recipes/Recette01.jpg" alt="Recette 1" width="380" height="253">
         <div class="card-body">
@@ -132,7 +132,7 @@
           </section>
         </div>
       </article>
-    </section>
+    </div>
   </main>
   <script src="./scripts/pages/IndexPage.js" type="module" async></script>
 </body>
