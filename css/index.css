@@ -1,78 +1,11 @@
-header.lpp-index_page-header {
-  background-image: url("../assets/pictures/lampos-aritonang-24gR_9lCdes-unsplash\ 1.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 50px 69px;
-}
+@import url("main/variables.css");
+@import url("main/common.css");
+@import url("components/header.css");
+@import url("components/form.css");
+@import url("components/card.css");
 
-header.lpp-index_page-header section {  
-  padding: 119px;
-  max-width: 70vw;
-}
-
-header.lpp-index_page-header h2 {
-  color: var(--font-color-tertiary);
-  font-size: 2.625rem;
-  line-height: 4.125rem;
-}
-
-.lpp-index_form-control {
-  background-color: var(--background-color-primary);
-  border-radius: 11px;
-  padding: 11px;
-  flex-wrap: nowrap;
-}
-
-.lpp-index_form-control input {
-  border: none;
-  width: 100%;
-  padding: 0 24px;
-}
-
-.lpp-index_form-search-cta {
-  transition: all ease-in-out 0.2s;
-  height: 51px;
-  border: none;
-  background-color: var(--background-color-tertiary);
-}
-
-.lpp-index_form-search-cta:hover, .lpp-index_form-search-cta:focus-visible {
-  background-color: var(--background-color-quaternary);
-}
-
-.lpp-index_form-search-cta:active {
-  background-color: var(--background-color-quaternary) !important;
-  filter: brightness(0.9);
-}
-
-.lpp-index_recipes-list {
+.lpp_recipes-list {
   margin-top: 55px;
   display: grid;
   grid-template-columns: repeat(3, 380px);
-}
-
-.lpp-index_recipe-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 21px;
-  overflow: hidden;
-}
-
-.lpp_card-subtitle {
-  text-transform: uppercase;
-  letter-spacing: 0.09rem;
-  font-size: 0.75rem;
-  margin-top: 32px;
-  margin-bottom: 15px;
-  color: var(--accent-color-secondary);
-}
-
-.lpp_card-ingredients {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: 21px;
-}
-
-.lpp_card-ingredient-name, .lpp_card-ingredient-amount {
-  margin: 0;
 }

@@ -1,0 +1,17 @@
+/************************************************/
+/***************** Common Style *****************/
+/************************************************/
+
+body {
+  font-family: "Manrope", sans-serif;
+  background-color: var(--background-color-fifth);
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: "Anton", sans-serif;
+}
+
+main {
+  max-width: 75%;
+}

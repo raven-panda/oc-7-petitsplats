@@ -1,0 +1,48 @@
+/*************************************************/
+/*************** Font Declarations ***************/
+/*************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url("./assets/fonts/manrope/Manrope-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("./assets/fonts/manrope/Manrope-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("./assets/fonts/manrope/Manrope-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Anton";
+  src: url("./assets/fonts/anton/Anton-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*************************************************/
+/*********** CSS Variables Declaration ***********/
+/*************************************************/
+
+:root {
+  --font-color-primary: #000000;
+  --font-color-secondary: #FFFFFF;
+  --font-color-tertiary: #FFD15B;
+
+  --accent-color-primary: #C6C6C6;
+  --accent-color-secondary: #7A7A7A;
+
+  --background-color-primary: #FFFFFF;
+  --background-color-secondary: #000000;
+  --background-color-tertiary: #1B1B1B;
+  --background-color-quaternary: #FFD15B;
+  --background-color-fifth: #EDEDED;
+}

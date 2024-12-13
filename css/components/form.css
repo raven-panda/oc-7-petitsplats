@@ -1,0 +1,100 @@
+/** Select styles **/
+.lpp_select-container {
+  position: relative;
+  min-width: 195px;
+  margin-right: 66px;
+}
+.lpp_select-container button {
+  display: flex;
+  align-items: center;
+  border-bottom: transparent;
+  padding: 16px;
+  width: 100%;
+}
+.lpp_select-container .lpp_select-content {
+  position: absolute;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
+  background: var(--background-color-primary);
+  padding: 16px;
+  width: 100%;
+  z-index: 2;
+}
+.lpp_select-container .lpp_select-list li {
+  width: 100%;
+  padding: 6px 0;
+}
+
+.lpp_select-container .lpp_select-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+.lpp_select-container.active .lpp_select-content {
+  display: block;
+  box-sizing: border-box;
+}
+
+.lpp_select-container.active button {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius:  0;
+}
+.lpp_select-container button svg {
+  transition: transform ease-in-out 0.1s;
+}
+.lpp_select-container.active button svg {
+  transform: rotate(180deg);
+}
+
+.lpp_select-search-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--accent-color-primary);
+  border-radius: 2px;
+  padding-right: 8px;
+  width: 163px;
+}
+.lpp_select-search-input input {
+  color: var(--accent-color-primary);
+  border: none;
+  padding: 8px;
+  display: block;
+  width: 100%;
+}
+.lpp_select-search-input svg {
+  color: var(--accent-color-secondary);
+  width: 1rem;
+}
+
+/* Header form styles */
+.lpp_form-control {
+  background-color: var(--background-color-primary);
+  border-radius: 11px;
+  padding: 11px;
+  flex-wrap: nowrap;
+}
+
+.lpp_form-control input {
+  border: none;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.lpp_form-search-cta {
+  transition: all ease-in-out 0.2s;
+  height: 51px;
+  border: none;
+  background-color: var(--background-color-tertiary);
+}
+
+.lpp_form-search-cta:hover, .lpp_form-search-cta:focus-visible {
+  background-color: var(--background-color-quaternary);
+}
+
+.lpp_form-search-cta:active {
+  background-color: var(--background-color-quaternary) !important;
+  filter: brightness(0.9);
+}

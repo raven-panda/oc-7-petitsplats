@@ -1,0 +1,38 @@
+/* Overwrite some bootstrap classes */
+.btn-light {
+  background-color: var(--background-color-primary);
+}
+.card-body {
+  padding: 32px 25px;
+}
+.card-title {
+  font-family: "Anton", sans-serif;
+  font-size: 1.125rem;
+}
+
+/* Recipes card */
+.lpp_recipe-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 21px;
+  overflow: hidden;
+}
+
+.lpp_card-subtitle {
+  text-transform: uppercase;
+  letter-spacing: 0.09rem;
+  font-size: 0.75rem;
+  margin-top: 32px;
+  margin-bottom: 15px;
+  color: var(--accent-color-secondary);
+}
+
+.lpp_card-ingredients {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 21px;
+}
+
+.lpp_card-ingredient-name, .lpp_card-ingredient-amount {
+  margin: 0;
+}
