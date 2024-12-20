@@ -11,3 +11,20 @@
   justify-content: space-between;
   row-gap: 66px;
 }
+
+#lpp_selected-tags-container {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  margin-top: 21px;
+  padding: 0;
+  width: 100%;
+  gap: 16px;
+}
+
+#lpp_selected-tags-container li {
+  padding: 21px;
+  background-color: var(--background-color-quaternary);
+  border-radius: 10px;
+  min-width: 203px;
+}
