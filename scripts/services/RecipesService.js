@@ -1,4 +1,4 @@
-import { recipes as recipesMock } from "./mock/recipes-mock";
+import { recipes as recipesMock } from "./mock/recipes-mock.js";
 
 /**
  * Service - Contains methods to access Recipes data
@@ -8,8 +8,8 @@ export default class RecipesService {
   /**
    * @returns All recipes found in database
    */
-  getAllRecipes() {
-    return recipesMock;
+  async getAllRecipes() {
+    return recipesMock ?? [];
   }
 
   /**

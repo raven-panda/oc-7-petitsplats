@@ -8,4 +8,6 @@
   margin-top: 55px;
   display: grid;
   grid-template-columns: repeat(3, 380px);
+  justify-content: space-between;
+  row-gap: 66px;
 }
