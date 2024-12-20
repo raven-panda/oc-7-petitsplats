@@ -11,7 +11,7 @@ export default class UrlService {
    * @param {string} name Name of url parameter to get value of
    */
   getUrlParam(name) {
-    return this.#searchParams.get(name);
+    return JSON.parse(this.#searchParams.get(name));
   }
 
   /**
@@ -31,7 +31,7 @@ export default class UrlService {
    * @param {string} value Value of url parameter to create
    */
   setUrlParam(name, value) {
-    this.#searchParams.set(name, value);
+    this.#searchParams.set(name, JSON.stringify(value));
     history.pushState({}, "", this.#url.href);
   }
 

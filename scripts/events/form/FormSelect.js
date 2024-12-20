@@ -84,9 +84,23 @@ export default class FormSelectEvents {
   clickListItemEvent(e) {
     e.preventDefault();
     if (this.#isMultiSelect)
-      this.#urlService.pushValueUrlParam(this.#id, e.currentTarget.textContent);
+      this.#urlService.pushValueUrlParam(this.#id, e.currentTarget.dataset.id);
     else
-      this.#urlService.setUrlParam(this.#id, e.currentTarget.textContent);
+      this.#urlService.setUrlParam(this.#id, e.currentTarget.dataset.id);
+
+    this.processSelections();
+  }
+
+  processSelections() {
+    const value = this.#urlService.getUrlParam(this.#id);
+
+    this.#itemsListDOM.childNodes.forEach(node => {
+      if (value.includes(node.dataset.id)) {
+        node.setAttribute("aria-selected", "true");
+      } else {
+        node.removeAttribute("aria-selected");
+      }
+    })
   }
 
   #toggleActive() {

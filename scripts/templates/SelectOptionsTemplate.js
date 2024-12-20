@@ -71,6 +71,7 @@ export default class SelectOptionsTemplate {
     
     this.#addOptionsToList(selectItemsElements);
     this.#selectEvents.createEvents();
+    this.#selectEvents.processSelections();
   }
   
 }

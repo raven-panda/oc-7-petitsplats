@@ -27,13 +27,24 @@
   width: 100%;
   padding: 6px 16px;
   transition: background-color ease-in-out 0.15s;
+  order: 1;
 }
 .lpp_select-container .lpp_select-list li:hover {
   cursor: pointer;
   background-color: var(--background-color-fifth);
 }
 
+.lpp_select-container .lpp_select-list li[aria-selected="true"] {
+  background-color: var(--background-color-quaternary);
+  order: 0;
+}
+.lpp_select-container .lpp_select-list li[aria-selected="true"]:not(:has(~ [aria-selected="true"])) {
+  margin-bottom: 12px;
+}
+
 .lpp_select-container .lpp_select-list {
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
   padding: 0;
   width: 100%;
