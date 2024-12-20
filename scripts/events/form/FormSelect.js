@@ -1,6 +1,7 @@
 export default class FormSelectEvents {
-  // State props
+  // Component props
   #id;
+  #isMultiSelect;
 
   // Url service
   #urlService;
@@ -11,7 +12,7 @@ export default class FormSelectEvents {
   #tagSearchBarDOM;
   #itemsListDOM;
 
-  constructor(id, urlService) {
+  constructor(id, urlService, isMultiSelect = false) {
     if (!id)
       throw new ReferenceError(`Parameter id must be specified.`)
     if (!urlService)
@@ -19,6 +20,7 @@ export default class FormSelectEvents {
 
     this.#id = id;
     this.#urlService = urlService;
+    this.#isMultiSelect = isMultiSelect;
 
     this.#containerDOM = document.querySelector(`#input-select_${id}`);
     if (!this.#containerDOM)
@@ -81,7 +83,10 @@ export default class FormSelectEvents {
    */
   clickListItemEvent(e) {
     e.preventDefault();
-    this.#urlService.pushValueUrlParam(this.#id, e.currentTarget.textContent);
+    if (this.#isMultiSelect)
+      this.#urlService.pushValueUrlParam(this.#id, e.currentTarget.textContent);
+    else
+      this.#urlService.setUrlParam(this.#id, e.currentTarget.textContent);
   }
 
   #toggleActive() {

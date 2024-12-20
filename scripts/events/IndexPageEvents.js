@@ -19,10 +19,10 @@ export default class IndexPageEvents {
 
     // Events utils instanciations
     this.#searchAllFormEvents = new FormSearchAllEvents("recipes-search-all-form");
-
-    this.#ingredientSelectEvents = new FormSelectEvents("ingredients", this.#urlService);
+    
+    this.#ingredientSelectEvents = new FormSelectEvents("ingredients", this.#urlService, true);
     this.#applianceSelectEvents = new FormSelectEvents("appliance", this.#urlService);
-    this.#ustensilsSelectEvents = new FormSelectEvents("ustensils", this.#urlService);
+    this.#ustensilsSelectEvents = new FormSelectEvents("ustensils", this.#urlService, true);
   }
   
   /**
