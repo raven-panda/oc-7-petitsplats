@@ -32,7 +32,7 @@ export default class SelectOptionsTemplate {
   #filterElements(recipesList) {
     const selectItems = [];
 
-    recipesList.forEach((recipe, i) => {      
+    recipesList.forEach(recipe => {      
       if (!recipe[this.#id])
         return console.error(`'${id}' property not found in a given recipe`);   
       
@@ -45,7 +45,11 @@ export default class SelectOptionsTemplate {
         !selectItems.includes(recipe[this.#id].toLowerCase()) && selectItems.push(recipe[this.#id].toLowerCase());
     })
 
-    return selectItems.sort((a, b) => a < b ? -1 : a > b ? 1 : 0).map((item, i) => ({ id: i, label: item }));
+    return selectItems.sort((a, b) => a < b ? -1 : a > b ? 1 : 0).map(item => ({ id: this.#normalizeItemName(item), label: item }));
+  }
+
+  #normalizeItemName(name) {
+    return name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "_");
   }
 
   /**
