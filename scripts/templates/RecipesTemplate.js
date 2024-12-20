@@ -12,9 +12,15 @@ export default class RecipesTemplate {
     return recipesList.map(recipe => new RecipeCardDOM(recipe.name, recipe.description, recipe.image, recipe.ingredients));
   }
 
+  #updateRecipesCounter(recipesList) {
+    const counterDOM = document.querySelector("#recipes-counter")
+    counterDOM.textContent = `${recipesList?.length ?? 0} recettes`;
+  }
+
   displayData(recipesList) {
     const listDOM = this.#createAllCards(recipesList);
     listDOM.forEach(element => element.displayCardData(this.#recipesContainerDOM));
+    this.#updateRecipesCounter(recipesList);
   }
 }
 
