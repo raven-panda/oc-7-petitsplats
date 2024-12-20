@@ -1,8 +1,8 @@
 import RecipesService from "../services/RecipesService.js";
 import UrlService from "../services/UrlService.js";
 import RecipesTemplate from "../templates/RecipesTemplate.js";
+import SelectOptionsTemplate from "../templates/SelectOptionsTemplate.js";
 import FormSearchAllEvents from "./form/FormSearchAll.js";
-import FormSelectEvents from "./form/FormSelect.js";
 
 export default class IndexPageEvents {
   // Services props
@@ -11,16 +11,15 @@ export default class IndexPageEvents {
 
   // Templating props
   #recipesTemplate;
+  #ingredientsSelectTemplate;
+  #applianceSelectTemplate;
+  #ustensilsSelectTemplate;
   
   // State props
   #recipesList;
 
   // Events props
   #searchAllFormEvents;
-
-  #ingredientSelectEvents;
-  #applianceSelectEvents;
-  #ustensilsSelectEvents;
 
   constructor() {
     // Services instanciations
@@ -33,9 +32,9 @@ export default class IndexPageEvents {
     // Events utils instanciations
     this.#searchAllFormEvents = new FormSearchAllEvents("recipes-search-all-form");
     
-    this.#ingredientSelectEvents = new FormSelectEvents("ingredients", this.#urlService, true);
-    this.#applianceSelectEvents = new FormSelectEvents("appliance", this.#urlService);
-    this.#ustensilsSelectEvents = new FormSelectEvents("ustensils", this.#urlService, true);
+    this.#ingredientsSelectTemplate = new SelectOptionsTemplate("ingredients", this.#urlService, true);
+    this.#applianceSelectTemplate = new SelectOptionsTemplate("appliance", this.#urlService);
+    this.#ustensilsSelectTemplate = new SelectOptionsTemplate("ustensils", this.#urlService, true);
 
     this.#initRecipes();
   }
@@ -43,6 +42,10 @@ export default class IndexPageEvents {
   async #initRecipes() {
     this.#recipesList = await this.#recipesService.getAllRecipes();
     this.#recipesTemplate.displayData(this.#recipesList);
+
+    this.#ingredientsSelectTemplate.displayData(this.#recipesList);
+    this.#applianceSelectTemplate.displayData(this.#recipesList);
+    this.#ustensilsSelectTemplate.displayData(this.#recipesList);
   }
   
   /**
@@ -50,9 +53,5 @@ export default class IndexPageEvents {
    */
   createEvents() {
     this.#searchAllFormEvents.createEvents();
-
-    this.#ingredientSelectEvents.createEvents();
-    this.#applianceSelectEvents.createEvents();
-    this.#ustensilsSelectEvents.createEvents();
   }
 }
