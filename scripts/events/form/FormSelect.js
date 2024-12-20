@@ -1,29 +1,40 @@
 export default class FormSelectEvents {
+  // State props
+  #id;
+
+  // Url service
+  #urlService;
+
   // Elements DOM
   #containerDOM;
   #selectButtonDOM;
   #tagSearchBarDOM;
   #itemsListDOM;
 
-  // State properties
-  #isActive;
+  constructor(id, urlService) {
+    if (!id)
+      throw new ReferenceError(`Parameter id must be specified.`)
+    if (!urlService)
+      throw new ReferenceError(`Select event fed with ID 'input-select_${id}' is missing 'UrlService' parameter.`)
 
-  constructor(id) {
-    this.#containerDOM = document.querySelector(`#${id}`);
+    this.#id = id;
+    this.#urlService = urlService;
+
+    this.#containerDOM = document.querySelector(`#input-select_${id}`);
     if (!this.#containerDOM)
-      throw new ReferenceError(`Select container element with ID '${id}' not found.`)
+      throw new ReferenceError(`Select container element with ID 'input-select_${id}' not found.`)
 
     this.#selectButtonDOM = this.#containerDOM.querySelector("button");
     if (!this.#selectButtonDOM)
-      throw new ReferenceError(`Button element in Select container with ID '${id}' not found.`);
+      throw new ReferenceError(`Button element in Select container with ID 'input-select_${id}' not found.`);
 
-    this.#tagSearchBarDOM = this.#containerDOM.querySelector(`input#${id}-search`);
+    this.#tagSearchBarDOM = this.#containerDOM.querySelector(`input#input-select_${id}-search`);
     if (!this.#tagSearchBarDOM)
-      throw new ReferenceError(`Input element with ID '${id}-search' in Select container ${id} not found.`);
+      throw new ReferenceError(`Input element with ID '${id}-search' in Select container 'input-select_${id}' not found.`);
 
     this.#itemsListDOM = this.#containerDOM.querySelector("ul.lpp_select-list");
     if (!this.#itemsListDOM)
-      throw new ReferenceError(`Ul element with class 'lpp_select-list' in Select container ${id} not found.`);
+      throw new ReferenceError(`Ul element with class 'lpp_select-list' in Select container 'input-select_${id}' not found.`);
   }
  
   /**
@@ -64,6 +75,15 @@ export default class FormSelectEvents {
     })
   }
 
+  /**
+   * @public Tag search event handler
+   * @param {MouseEvent} e Event object
+   */
+  clickListItemEvent(e) {
+    e.preventDefault();
+    this.#urlService.pushValueUrlParam(this.#id, e.currentTarget.textContent);
+  }
+
   #toggleActive() {
     this.#containerDOM.classList.toggle("active");
   }
@@ -80,11 +100,17 @@ export default class FormSelectEvents {
     this.buttonClickEvent = this.buttonClickEvent.bind(this);
     this.outsideClickEvent = this.outsideClickEvent.bind(this);
     this.tagSearchInputEvent = this.tagSearchInputEvent.bind(this);
+    this.clickListItemEvent = this.clickListItemEvent.bind(this);
 
     // Creating event listeners
-    this.#selectButtonDOM.addEventListener("click", this.buttonClickEvent)
-    document.addEventListener("click", this.outsideClickEvent)
-    this.#tagSearchBarDOM.addEventListener("input", this.tagSearchInputEvent)
+    this.#selectButtonDOM.addEventListener("click", this.buttonClickEvent);
+    document.addEventListener("click", this.outsideClickEvent);
+    this.#tagSearchBarDOM.addEventListener("input", this.tagSearchInputEvent);
+    this.#itemsListDOM.childNodes.forEach(node => node.addEventListener("click", this.clickListItemEvent));
+  }
+
+  recreateListEvents() {
+    
   }
 
 }

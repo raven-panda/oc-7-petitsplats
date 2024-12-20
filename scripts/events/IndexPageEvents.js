@@ -1,7 +1,11 @@
+import UrlService from "../services/UrlService.js";
 import FormSearchAllEvents from "./form/FormSearchAll.js";
 import FormSelectEvents from "./form/FormSelect.js";
 
 export default class IndexPageEvents {
+  // Services props
+  #urlService;
+
   // Events props
   #searchAllFormEvents;
 
@@ -10,11 +14,15 @@ export default class IndexPageEvents {
   #ustensilsSelectEvents;
 
   constructor() {
+    // Services instanciations
+    this.#urlService = new UrlService();
+
+    // Events utils instanciations
     this.#searchAllFormEvents = new FormSearchAllEvents("recipes-search-all-form");
 
-    this.#ingredientSelectEvents = new FormSelectEvents("input-select_ingredients");
-    this.#applianceSelectEvents = new FormSelectEvents("input-select_appliance");
-    this.#ustensilsSelectEvents = new FormSelectEvents("input-select_ustensils");
+    this.#ingredientSelectEvents = new FormSelectEvents("ingredients", this.#urlService);
+    this.#applianceSelectEvents = new FormSelectEvents("appliance", this.#urlService);
+    this.#ustensilsSelectEvents = new FormSelectEvents("ustensils", this.#urlService);
   }
   
   /**
