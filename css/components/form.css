@@ -42,6 +42,10 @@
 .lpp_select-container.active .lpp_select-content {
   display: block;
   box-sizing: border-box;
+  max-height: 310px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
 }
 
 .lpp_select-container.active button {
