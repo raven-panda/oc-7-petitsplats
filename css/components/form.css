@@ -120,3 +120,9 @@
   background-color: var(--background-color-quaternary) !important;
   filter: brightness(0.9);
 }
+
+#lpp_selected-tags-container li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -149,14 +149,17 @@ export default class FormSelectEvents {
 
   updateListEvents() {
     this.deleteListItemEvent = this.deleteListItemEvent.bind(this);
+    this.clickListItemEvent = this.clickListItemEvent.bind(this);
 
     const selectedList = this.#selectedTagsListDOM.querySelectorAll(`li[data-type="${this.#id}"]`);
     selectedList.forEach(node => node.querySelector("button.delete-tag").addEventListener("click", this.deleteListItemEvent));
+    this.#itemsListDOM.childNodes.forEach(node => node.addEventListener("click", this.clickListItemEvent));
   }
 
   removeEvents() {
     const selectedList = this.#selectedTagsListDOM.querySelectorAll(`li[data-type="${this.#id}"]`);
     selectedList.forEach(node => node.querySelector("button.delete-tag").removeEventListener("click", this.deleteListItemEvent));
+    this.#itemsListDOM.childNodes.forEach(node => node.removeEventListener("click", this.clickListItemEvent));
   }
 
 }

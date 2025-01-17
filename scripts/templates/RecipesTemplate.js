@@ -14,7 +14,7 @@ export default class RecipesTemplate {
 
   #updateRecipesCounter(recipesList) {
     const counterDOM = document.querySelector("#recipes-counter")
-    counterDOM.textContent = `${recipesList?.length ?? 0} recettes`;
+    counterDOM.textContent = `${recipesList?.length ?? 0} recette${!recipesList?.length || recipesList.length !== 1 ? "s" : ""}`;
   }
 
   displayData(recipesList) {

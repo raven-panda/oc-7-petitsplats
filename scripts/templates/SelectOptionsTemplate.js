@@ -1,4 +1,5 @@
 import FormSelectEvents from "../events/form/FormSelect.js";
+import SvgDOM from "./dom/SvgDOM.js";
 
 export default class SelectOptionsTemplate {
   // Component props
@@ -75,13 +76,39 @@ export default class SelectOptionsTemplate {
    * @param {{ id: number, label: string }[]} items 
    */
   #updateOptionsList(items) {
+    for (let node of Array.from(this.#itemsListDOM.childNodes)) {
+      if (!items.some(item => item.id === node.dataset.id)) {
+        node.remove();
+      }
+    }
+
+    items.forEach((item) => {
+      let alreadyExists = false;
+
+      for (let node of Array.from(this.#itemsListDOM.childNodes)) {
+        alreadyExists = node.dataset.id === item.id;
+        if (alreadyExists)
+          break;
+      }
+
+      if (!alreadyExists) {
+        const listItemDOM = document.createElement("li");
+        listItemDOM.dataset.id = item.id;
+        listItemDOM.textContent = item.label.charAt(0).toUpperCase() + item.label.substring(1);
+
+        this.#itemsListDOM.appendChild(listItemDOM);
+      }
+    })
     
+    const sortedNodes = Array.from(this.#itemsListDOM.childNodes)
+      .sort((a, b) => a.dataset.id < b.dataset.id ? -1 : a.dataset.id > b.dataset.id ? 1 : 0);
+
+    this.#itemsListDOM.innerHTML = "";
+    sortedNodes.forEach(node => this.#itemsListDOM.appendChild(node));
   }
 
   #processSelections() {
-    const value = this.#urlService.getUrlParam(this.#id);
-    console.log({value});
-    
+    const value = this.#urlService.getUrlParam(this.#id);    
 
     this.#selectEvents.removeEvents(value);
     const itemsToRemove = this.#selectedTagsContainerDOM.querySelectorAll(`li[data-type="${this.#id}"]`);
@@ -94,9 +121,9 @@ export default class SelectOptionsTemplate {
           copiedNode.dataset.type = this.#id;
   
           const deleteTagBtn = document.createElement("button");
-          deleteTagBtn.classList.add("delete-tag");
+          deleteTagBtn.classList.add("delete-tag", "btn", "outline-none", "p-1");
           deleteTagBtn.type = "button";
-          deleteTagBtn.textContent = "delete"; // change to cross
+          deleteTagBtn.appendChild(SvgDOM.crossSvg());
           copiedNode.appendChild(deleteTagBtn);
   
           this.#selectedTagsContainerDOM.appendChild(copiedNode);
@@ -120,6 +147,7 @@ export default class SelectOptionsTemplate {
     this.#selectedTagsContainerDOM = document.querySelector("#lpp_selected-tags-container")
 
     const selectItemsElements = this.#filterElements(recipesList);
+    console.log({ selectItemsElements })
     
     this.#updateOptionsList(selectItemsElements);
     this.#processSelections();
