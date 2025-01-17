@@ -6,7 +6,7 @@ import { recipes as recipesMock } from "./mock/recipes-mock.js";
 export default class RecipesService {
 
   /**
-   * @returns All recipes found in database
+   * @returns {recipesMock} All recipes found in database
    */
   async getAllRecipes() {
     return recipesMock ?? [];
@@ -21,27 +21,16 @@ export default class RecipesService {
   }
 
   /**
-   * @param {string[]} value Ingredients tags used for search
+   * @param {{ ingredients: string[], appliance: string, ustensils: string[] }} value Ingredients tags used for search
    * @returns {recipesMock} Recipes found with given Ingredient tag
    */
-  searchRecipesByIngredients(...value) {
-
-  }
-
-  /**
-   * @param {string[]} value Appliances tags used for search
-   * @returns {recipesMock} Recipes found with given Appliances tag
-   */
-  searchRecipesByAppliances(...value) {
-    
-  }
-
-  /**
-   * @param {string[]} value Ustensils tags used for search
-   * @returns Recipes found with given Ustensils tag
-   */
-  searchRecipesByUstensils(...value) {
-    
+  async searchRecipesByFilters(value) {
+    const allRecipes = await this.getAllRecipes(); 
+    return value ? allRecipes
+        .filter(recipe => !recipe.ingredients || !value.ingredients || value.ingredients.every(valIng => recipe.ingredients.some(recIng => recIng.ingredient.toLowerCase() === valIng.toLowerCase())))
+        .filter(recipe => !recipe.appliance || !value.appliance || recipe.appliance.toLowerCase() === value.appliance.toLowerCase())
+        .filter(recipe => !recipe.ustensils || !value.ustensils || value.ustensils.every(valUst => recipe.ustensils.map(ust => ust.toLowerCase()).includes(valUst.toLowerCase())))
+      : allRecipes;
   }
 
 }

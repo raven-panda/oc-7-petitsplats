@@ -27,6 +27,23 @@ export default class UrlService {
   }
 
   /**
+   * @param {string} name Name of array url parameter to push value in
+   * @param {string} value Value of url parameter to push in given parameter
+   */
+  deleteFromArrayValueUrlParam(name, value) {
+    const currentValue = JSON.parse(this.#searchParams.get(name)) ?? [];
+    let finalValue = currentValue.filter(curr => curr !== value);
+
+    if (!!finalValue.length && finalValue.length > 0) {
+      this.#searchParams.set(name, JSON.stringify(finalValue));
+    } else {
+      this.#searchParams.delete(name);
+    }
+    
+    history.pushState({}, "", this.#url.href);
+  }
+
+  /**
    * @param {string} name Name of url parameter to create
    * @param {string} value Value of url parameter to create
    */
@@ -39,7 +56,7 @@ export default class UrlService {
    * @param {string} name Name of url parameter to delete
    */
   removeParam(name) {
-    this.#searchParams.delete(param);
+    this.#searchParams.delete(name);
     history.pushState({}, "", this.#url.href);
   }
 

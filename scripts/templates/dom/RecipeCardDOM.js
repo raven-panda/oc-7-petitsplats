@@ -72,13 +72,16 @@ export default class RecipeCardDOM {
       ingredientName.classList.add("lpp_card-ingredient-name");
       ingredientName.textContent = ingredient.ingredient;
 
-      const ingredientAmount = document.createElement("p");
-      ingredientAmount.classList.add("lpp_card-ingredient-amount");
-      ingredientAmount.textContent = ingredient.quantity + (ingredient.unit ? " " + ingredient.unit : "");
-
       const ingredientContainer = document.createElement("div");
       ingredientContainer.appendChild(ingredientName);
-      ingredientContainer.appendChild(ingredientAmount);
+
+      if (ingredient.quantity) {
+        const ingredientAmount = document.createElement("p");
+        ingredientAmount.classList.add("lpp_card-ingredient-amount");
+        ingredientAmount.textContent = ingredient.quantity + (ingredient.unit ? " " + ingredient.unit : "");
+        
+        ingredientContainer.appendChild(ingredientAmount);
+      }
 
       ingredientsSection.appendChild(ingredientContainer);
     })

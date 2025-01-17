@@ -2,6 +2,7 @@ export default class FormSelectEvents {
   // Component props
   #id;
   #isMultiSelect;
+  #onChangeCallback;
 
   // Url service
   #urlService;
@@ -11,8 +12,9 @@ export default class FormSelectEvents {
   #selectButtonDOM;
   #tagSearchBarDOM;
   #itemsListDOM;
+  #selectedTagsListDOM;
 
-  constructor(id, urlService, isMultiSelect = false) {
+  constructor(id, urlService, onChangeCallback, isMultiSelect = false) {
     if (!id)
       throw new ReferenceError(`Parameter id must be specified.`)
     if (!urlService)
@@ -20,6 +22,7 @@ export default class FormSelectEvents {
 
     this.#id = id;
     this.#urlService = urlService;
+    this.#onChangeCallback = onChangeCallback;
     this.#isMultiSelect = isMultiSelect;
 
     this.#containerDOM = document.querySelector(`#input-select_${id}`);
@@ -37,6 +40,10 @@ export default class FormSelectEvents {
     this.#itemsListDOM = this.#containerDOM.querySelector("ul.lpp_select-list");
     if (!this.#itemsListDOM)
       throw new ReferenceError(`Ul element with class 'lpp_select-list' in Select container 'input-select_${id}' not found.`);
+
+    this.#selectedTagsListDOM = document.querySelector(`ul#lpp_selected-tags-container`);
+    if (!this.#itemsListDOM)
+      throw new ReferenceError(`Ul element with id 'lpp_selected-tags-container' not found.`);
   }
  
   /**
@@ -88,19 +95,30 @@ export default class FormSelectEvents {
     else
       this.#urlService.setUrlParam(this.#id, e.currentTarget.dataset.id);
 
-    this.processSelections();
+    this.#onChangeCallback();
   }
 
-  processSelections() {
-    const value = this.#urlService.getUrlParam(this.#id);
+  deleteListItemEvent(e) {
+    e.preventDefault();
+    
+    if (this.#isMultiSelect)
+      this.#urlService.deleteFromArrayValueUrlParam(this.#id, e.currentTarget.parentNode.dataset.id);
+    else
+      this.#urlService.removeParam(this.#id);
 
+    this.#onChangeCallback();
+  }
+
+  processSelections(value) {
     this.#itemsListDOM.childNodes.forEach(node => {
-      if (value.includes(node.dataset.id)) {
+      if (value?.includes(node.dataset.id)) {
         node.setAttribute("aria-selected", "true");
       } else {
         node.removeAttribute("aria-selected");
       }
     })
+
+    this.updateListEvents();
   }
 
   #toggleActive() {
@@ -120,6 +138,7 @@ export default class FormSelectEvents {
     this.outsideClickEvent = this.outsideClickEvent.bind(this);
     this.tagSearchInputEvent = this.tagSearchInputEvent.bind(this);
     this.clickListItemEvent = this.clickListItemEvent.bind(this);
+    this.deleteListItemEvent = this.deleteListItemEvent.bind(this);
 
     // Creating event listeners
     this.#selectButtonDOM.addEventListener("click", this.buttonClickEvent);
@@ -128,8 +147,16 @@ export default class FormSelectEvents {
     this.#itemsListDOM.childNodes.forEach(node => node.addEventListener("click", this.clickListItemEvent));
   }
 
-  recreateListEvents() {
-    
+  updateListEvents() {
+    this.deleteListItemEvent = this.deleteListItemEvent.bind(this);
+
+    const selectedList = this.#selectedTagsListDOM.querySelectorAll(`li[data-type="${this.#id}"]`);
+    selectedList.forEach(node => node.querySelector("button.delete-tag").addEventListener("click", this.deleteListItemEvent));
+  }
+
+  removeEvents() {
+    const selectedList = this.#selectedTagsListDOM.querySelectorAll(`li[data-type="${this.#id}"]`);
+    selectedList.forEach(node => node.querySelector("button.delete-tag").removeEventListener("click", this.deleteListItemEvent));
   }
 
 }

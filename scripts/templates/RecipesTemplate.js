@@ -22,5 +22,10 @@ export default class RecipesTemplate {
     listDOM.forEach(element => element.displayCardData(this.#recipesContainerDOM));
     this.#updateRecipesCounter(recipesList);
   }
+
+  updateData(recipesList) {
+    this.#recipesContainerDOM.innerHTML = "";
+    this.displayData(recipesList);
+  }
 }
 

@@ -32,20 +32,41 @@ export default class IndexPageEvents {
     // Events utils instanciations
     this.#searchAllFormEvents = new FormSearchAllEvents("recipes-search-all-form");
     
-    this.#ingredientsSelectTemplate = new SelectOptionsTemplate("ingredients", this.#urlService, true);
-    this.#applianceSelectTemplate = new SelectOptionsTemplate("appliance", this.#urlService);
-    this.#ustensilsSelectTemplate = new SelectOptionsTemplate("ustensils", this.#urlService, true);
+    this.#ingredientsSelectTemplate = new SelectOptionsTemplate("ingredients", this.#urlService, () => this.#onFormsChangeHandler(), true);
+    this.#applianceSelectTemplate = new SelectOptionsTemplate("appliance", this.#urlService, () => this.#onFormsChangeHandler());
+    this.#ustensilsSelectTemplate = new SelectOptionsTemplate("ustensils", this.#urlService, () => this.#onFormsChangeHandler(), true);
 
     this.#initRecipes();
   }
 
   async #initRecipes() {
-    this.#recipesList = await this.#recipesService.getAllRecipes();
+    this.#recipesList = await this.#recipesService.searchRecipesByFilters({
+      ingredients: this.#urlService.getUrlParam("ingredients"),
+      appliance: this.#urlService.getUrlParam("appliance"),
+      ustensils: this.#urlService.getUrlParam("ustensils")
+    });
     this.#recipesTemplate.displayData(this.#recipesList);
 
     this.#ingredientsSelectTemplate.displayData(this.#recipesList);
     this.#applianceSelectTemplate.displayData(this.#recipesList);
     this.#ustensilsSelectTemplate.displayData(this.#recipesList);
+  }
+
+  /**
+   * @param {{ ingredients: string[], appliance: string, ustensils: string[] }} value Ingredients tags used for search
+   */
+  async #onFormsChangeHandler() {
+    this.#recipesList = await this.#recipesService.searchRecipesByFilters({
+      ingredients: this.#urlService.getUrlParam("ingredients"),
+      appliance: this.#urlService.getUrlParam("appliance"),
+      ustensils: this.#urlService.getUrlParam("ustensils")
+    });
+
+    this.#recipesTemplate.updateData(this.#recipesList);
+
+    this.#ingredientsSelectTemplate.updateData(this.#recipesList);
+    this.#applianceSelectTemplate.updateData(this.#recipesList);
+    this.#ustensilsSelectTemplate.updateData(this.#recipesList);
   }
   
   /**
