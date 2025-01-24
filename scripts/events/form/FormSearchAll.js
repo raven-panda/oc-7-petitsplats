@@ -68,7 +68,7 @@ export default class FormSearchAllEvents {
     const formData = new FormData(this.#formDOM);
     
     if (!!formData.get("input-query")) {
-      this.#urlService.setUrlParam("input-query", formData.get("input-query"));
+      this.#urlService.setUrlParam("input-query", StringUtils.escapeHtml(formData.get("input-query")?.trim()));
     } else {
       this.#urlService.removeParam("input-query");
     }

@@ -14,7 +14,7 @@ export default class UrlService {
    */
   getUrlParam(name) {
     const paramValue = JSON.parse(this.#searchParams.get(name));    
-    return Array.isArray(paramValue) ? paramValue : StringUtils.escapeHtml(paramValue);
+    return Array.isArray(paramValue) ? StringUtils.escapeHtmlArray(paramValue) : StringUtils.escapeHtml(paramValue);
   }
 
   /**
