@@ -28,3 +28,12 @@
   border-radius: 10px;
   min-width: 203px;
 }
+
+.lpp_recipes-list + p.lpp_no-recipe {
+  display: none;
+  text-align: center;
+}
+
+.lpp_recipes-list.no-recipe-found + p.lpp_no-recipe {
+  display: block;
+}

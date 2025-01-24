@@ -19,7 +19,14 @@ export default class RecipesTemplate {
 
   displayData(recipesList) {
     const listDOM = this.#createAllCards(recipesList);
-    listDOM.forEach(element => element.displayCardData(this.#recipesContainerDOM));
+
+    if (listDOM.length > 0) {
+      this.#recipesContainerDOM.classList.remove("no-recipe-found");
+      listDOM.forEach(element => element.displayCardData(this.#recipesContainerDOM));
+    } else {
+      this.#recipesContainerDOM.classList.add("no-recipe-found");
+    }
+    
     this.#updateRecipesCounter(recipesList);
   }
 
