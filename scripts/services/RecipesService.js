@@ -30,8 +30,13 @@ export default class RecipesService {
    * @param {string} query 
    */
   #filterWithQueryString(recipes, query) {
-    let filteredRecipes = recipes;
-    return filteredRecipes;
+    return recipes.filter(recipe => 
+      recipe.name && recipe.name.toLowerCase().includes(query.toLowerCase()) ||
+      recipe.ingredients && recipe.ingredients.some(ing => ing.ingredient?.toLowerCase().includes(query.toLowerCase())) ||
+      recipe.appliance && recipe.appliance.toLowerCase().includes(query.toLowerCase()) ||
+      recipe.ustensils && recipe.ustensils.some(ust => ust.toLowerCase().includes(query.toLowerCase())) ||
+      recipe.description && recipe.description.toLowerCase().includes(query.toLowerCase())
+    );;
   }
 
 }
