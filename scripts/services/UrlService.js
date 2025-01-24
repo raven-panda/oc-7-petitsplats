@@ -1,3 +1,5 @@
+import StringUtils from "../utils/StringUtils.js";
+
 export default class UrlService {
   #url;
   #searchParams;
@@ -11,7 +13,10 @@ export default class UrlService {
    * @param {string} name Name of url parameter to get value of
    */
   getUrlParam(name) {
-    return JSON.parse(this.#searchParams.get(name));
+    const paramValue = JSON.parse(this.#searchParams.get(name));
+    console.log({ paramValue });
+    
+    return Array.isArray(paramValue) ? paramValue : StringUtils.escapeHtml(paramValue);
   }
 
   /**
