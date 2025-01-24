@@ -30,17 +30,16 @@ export default class IndexPageEvents {
     this.#recipesTemplate = new RecipesTemplate();
 
     // Events utils instanciations
-    this.#searchAllFormEvents = new FormSearchAllEvents("recipes-search-all-form");
-    
+    this.#searchAllFormEvents = new FormSearchAllEvents("recipes-search-all-form", this.#urlService, () => this.#onFormsChangeHandler());
+
     this.#ingredientsSelectTemplate = new SelectOptionsTemplate("ingredients", this.#urlService, () => this.#onFormsChangeHandler(), true);
     this.#applianceSelectTemplate = new SelectOptionsTemplate("appliance", this.#urlService, () => this.#onFormsChangeHandler());
     this.#ustensilsSelectTemplate = new SelectOptionsTemplate("ustensils", this.#urlService, () => this.#onFormsChangeHandler(), true);
-
-    this.#initRecipes();
   }
 
   async #initRecipes() {
     this.#recipesList = await this.#recipesService.searchRecipes({
+      queryString: this.#urlService.getUrlParam("queryString"),
       ingredients: this.#urlService.getUrlParam("ingredients"),
       appliance: this.#urlService.getUrlParam("appliance"),
       ustensils: this.#urlService.getUrlParam("ustensils")
@@ -57,6 +56,7 @@ export default class IndexPageEvents {
    */
   async #onFormsChangeHandler() {
     this.#recipesList = await this.#recipesService.searchRecipes({
+      queryString: this.#urlService.getUrlParam("queryString"),
       ingredients: this.#urlService.getUrlParam("ingredients"),
       appliance: this.#urlService.getUrlParam("appliance"),
       ustensils: this.#urlService.getUrlParam("ustensils")
@@ -73,6 +73,7 @@ export default class IndexPageEvents {
    * Create events of /index.html page
    */
   createEvents() {
+    this.#initRecipes();
     this.#searchAllFormEvents.createEvents();
   }
 }

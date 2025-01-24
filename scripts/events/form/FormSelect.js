@@ -60,9 +60,8 @@ export default class FormSelectEvents {
    * @param {MouseEvent} e Event object
    */
   outsideClickEvent(e) {
-    e.preventDefault();
     if (e.target !== this.#containerDOM && !this.#containerDOM.contains(e.target))
-      this.#disable();   
+      this.#disable();
   }
 
   /**

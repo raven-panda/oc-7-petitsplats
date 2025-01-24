@@ -16,4 +16,4 @@ export default class IndexPage {
   }
 }
 
-new IndexPage().init();
+const page = new IndexPage().init();

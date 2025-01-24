@@ -27,14 +27,14 @@
       <h2 class="text-center" tabindex="0">CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h2>
       <form action="#" method="get" id="recipes-search-all-form">
         <div class="input-group mb-3 lpp_form-control">
-          <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Rechercher une recette, un ingrédient, et cetera">
+          <input type="text" name="input-query" id="recipes-search-all-form_input" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Rechercher une recette, un ingrédient, et cetera">
           <button type="button" class="btn outline-none d-none">
             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>           
           <div class="input-group-append">
-            <button class="btn lpp_form-search-cta" type="submit">
+            <button id="recipes-search-all-form_submit-btn" class="btn lpp_form-search-cta" type="submit">
               <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="10" cy="10.4219" r="9.5" stroke="white"/>
                 <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="white"/>
@@ -106,6 +106,6 @@
     <ul id="lpp_selected-tags-container"></ul>
     <div class="lpp_recipes-list"></div>
   </main>
-  <script src="./scripts/pages/IndexPage.js" type="module" async></script>
+  <script src="./scripts/pages/IndexPage.js" type="module"></script>
 </body>
 </html>

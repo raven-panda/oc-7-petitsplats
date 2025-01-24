@@ -13,9 +13,7 @@ export default class UrlService {
    * @param {string} name Name of url parameter to get value of
    */
   getUrlParam(name) {
-    const paramValue = JSON.parse(this.#searchParams.get(name));
-    console.log({ paramValue });
-    
+    const paramValue = JSON.parse(this.#searchParams.get(name));    
     return Array.isArray(paramValue) ? paramValue : StringUtils.escapeHtml(paramValue);
   }
 
