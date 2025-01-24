@@ -40,7 +40,7 @@ export default class IndexPageEvents {
   }
 
   async #initRecipes() {
-    this.#recipesList = await this.#recipesService.searchRecipesByFilters({
+    this.#recipesList = await this.#recipesService.searchRecipes({
       ingredients: this.#urlService.getUrlParam("ingredients"),
       appliance: this.#urlService.getUrlParam("appliance"),
       ustensils: this.#urlService.getUrlParam("ustensils")
@@ -56,7 +56,7 @@ export default class IndexPageEvents {
    * @param {{ ingredients: string[], appliance: string, ustensils: string[] }} value Ingredients tags used for search
    */
   async #onFormsChangeHandler() {
-    this.#recipesList = await this.#recipesService.searchRecipesByFilters({
+    this.#recipesList = await this.#recipesService.searchRecipes({
       ingredients: this.#urlService.getUrlParam("ingredients"),
       appliance: this.#urlService.getUrlParam("appliance"),
       ustensils: this.#urlService.getUrlParam("ustensils")
