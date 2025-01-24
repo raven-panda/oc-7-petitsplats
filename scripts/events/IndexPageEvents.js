@@ -39,7 +39,7 @@ export default class IndexPageEvents {
 
   async #initRecipes() {
     this.#recipesList = await this.#recipesService.searchRecipes({
-      queryString: this.#urlService.getUrlParam("queryString"),
+      queryString: this.#urlService.getUrlParam("input-query"),
       ingredients: this.#urlService.getUrlParam("ingredients"),
       appliance: this.#urlService.getUrlParam("appliance"),
       ustensils: this.#urlService.getUrlParam("ustensils")
@@ -56,7 +56,7 @@ export default class IndexPageEvents {
    */
   async #onFormsChangeHandler() {
     this.#recipesList = await this.#recipesService.searchRecipes({
-      queryString: this.#urlService.getUrlParam("queryString"),
+      queryString: this.#urlService.getUrlParam("input-query"),
       ingredients: this.#urlService.getUrlParam("ingredients"),
       appliance: this.#urlService.getUrlParam("appliance"),
       ustensils: this.#urlService.getUrlParam("ustensils")

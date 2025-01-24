@@ -93,7 +93,7 @@ export default class FormSelectEvents {
       this.#urlService.pushValueUrlParam(this.#id, e.currentTarget.dataset.id);
     else
       this.#urlService.setUrlParam(this.#id, e.currentTarget.dataset.id);
-
+    this.#tagSearchBarDOM.value = "";
     this.#onChangeCallback();
   }
 
