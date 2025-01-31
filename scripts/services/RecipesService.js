@@ -31,50 +31,35 @@ export default class RecipesService {
    */
   #filterWithQueryString(recipes, query) {
     let filteredRecipes = [];
+    query = query.toLowerCase();
 
     for (let i = 0; i < recipes.length; i++) {
-      const current = recipes[i];
+        const current = recipes[i];
 
-      const recipeName = current.name;
-      const recipeIngredients = current.ingredients ?? [];
-      const recipeAppliance = current.appliance;
-      const recipeUstensils = current.ustensils ?? [];
-      const recipeDescription = current.description;
-
-      if (!!recipeName && recipeName.toLowerCase().includes(query.toLowerCase())) {
-        filteredRecipes.push(current);
-        continue;
-      }
-
-      let ingredientFound = false;
-      for (let ingIndex = 0; ingIndex < recipeIngredients.length; ingIndex++) {
-        if (recipeIngredients[ingIndex]?.ingredient && recipeIngredients[ingIndex].ingredient.toLowerCase().includes(query.toLowerCase())) {
-          filteredRecipes.push(current);
-          ingredientFound = true;
-          break;
+        if (
+            (current.name && current.name.toLowerCase().includes(query)) ||
+            (current.description && current.description.toLowerCase().includes(query)) ||
+            (current.appliance && current.appliance.toLowerCase().includes(query))
+        ) {
+            filteredRecipes.push(current);
+            continue;
         }
-      }
-      if (ingredientFound)
-        continue;
 
-      if (recipeAppliance && recipeAppliance.toLowerCase().includes(query.toLowerCase())) {
-        filteredRecipes.push(current);
-        continue;
-      }
-
-      for (let ustIndex = 0; ustIndex < recipeIngredients.length; ustIndex++) {
-        if (recipeUstensils[ustIndex] && recipeUstensils[ustIndex].toLowerCase().includes(query.toLowerCase())) {
-          filteredRecipes.push(current);
-          ingredientFound = true;
-          break;
+        const recipeIngredients = current.ingredients ?? [];
+        for (let ingIndex = 0; ingIndex < recipeIngredients.length; ingIndex++) {
+            if (recipeIngredients[ingIndex]?.ingredient && recipeIngredients[ingIndex].ingredient.toLowerCase().includes(query)) {
+                filteredRecipes.push(current);
+                break;
+            }
         }
-      }
-      if (ingredientFound)
-        continue;
 
-      if (recipeDescription && recipeDescription.toLowerCase().includes(query.toLowerCase())) {
-        filteredRecipes.push(current);
-      }
+        const recipeUstensils = current.ustensils ?? [];
+        for (let ustIndex = 0; ustIndex < recipeUstensils.length; ustIndex++) {
+            if (recipeUstensils[ustIndex] && recipeUstensils[ustIndex].toLowerCase().includes(query)) {
+                filteredRecipes.push(current);
+                break;
+            }
+        }
     }
 
     return filteredRecipes;
