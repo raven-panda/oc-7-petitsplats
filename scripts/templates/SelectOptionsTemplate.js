@@ -67,23 +67,15 @@ export default class SelectOptionsTemplate {
 
   /**
    * 
-   * @param {{ id: number, label: string }[]} items 
+   * @param {{ id: string, label: string }[]} items 
    */
   #addOptionsToList(items) {
-    items.forEach((item) => {
-      const listItemDOM = document.createElement("li");
-      listItemDOM.dataset.id = StringUtils.escapeHtml(item.id);
-      
-      const itemLabel = StringUtils.escapeHtml(item.label);
-      listItemDOM.textContent = itemLabel.charAt(0).toUpperCase() + itemLabel.substring(1);
-
-      this.#itemsListDOM.appendChild(listItemDOM);
-    })
+    this.#createOptionsList(items);
   }
 
   /**
    * 
-   * @param {{ id: number, label: string }[]} items 
+   * @param {{ id: string, label: string }[]} items 
    */
   #updateOptionsList(items) {
     for (let node of Array.from(this.#itemsListDOM.childNodes)) {
@@ -92,6 +84,20 @@ export default class SelectOptionsTemplate {
       }
     }
 
+    this.#createOptionsList(items);
+
+    const sortedNodes = Array.from(this.#itemsListDOM.childNodes)
+      .sort((a, b) => a.dataset.id < b.dataset.id ? -1 : a.dataset.id > b.dataset.id ? 1 : 0);
+
+    this.#itemsListDOM.innerHTML = "";
+    sortedNodes.forEach(node => this.#itemsListDOM.appendChild(node));
+  }
+  
+  /**
+   * 
+   * @param {{ id: string, label: string }[]} items 
+   */
+  #createOptionsList(items) {
     items.forEach((item) => {
       let alreadyExists = false;
 
@@ -102,47 +108,64 @@ export default class SelectOptionsTemplate {
       }
 
       if (!alreadyExists) {
-        const listItemDOM = document.createElement("li");
-        const itemLabel = StringUtils.escapeHtml(item.label);
-        
-        listItemDOM.dataset.id = StringUtils.escapeHtml(item.id);
-        listItemDOM.textContent = itemLabel.charAt(0).toUpperCase() + itemLabel.substring(1);
-
+        const listItemDOM = this.#getFilterLiDOM(item);
         this.#itemsListDOM.appendChild(listItemDOM);
       }
     })
-    
-    const sortedNodes = Array.from(this.#itemsListDOM.childNodes)
-      .sort((a, b) => a.dataset.id < b.dataset.id ? -1 : a.dataset.id > b.dataset.id ? 1 : 0);
-
-    this.#itemsListDOM.innerHTML = "";
-    sortedNodes.forEach(node => this.#itemsListDOM.appendChild(node));
   }
 
-  #processSelections() {
+  /**
+   * @param {{ id: string, label: string }} item
+   * @returns {HTMLLIElement}
+   */
+  #getFilterLiDOM(item) {
+    const listItemDOM = document.createElement("li");
+    const itemLabel = StringUtils.escapeHtml(item.label);
+    
+    listItemDOM.dataset.id = StringUtils.escapeHtml(item.id);
+    listItemDOM.textContent = itemLabel.charAt(0).toUpperCase() + itemLabel.substring(1);
+
+    return listItemDOM;
+  }
+
+  /**
+   * 
+   * @param {{ id: string, label: string }[]} items 
+   */
+  #processSelections(items) {
+    this.#removeFilteredOptions();
     const value = this.#urlService.getUrlParam(this.#id);    
 
-    this.#selectEvents.removeEvents(value);
+    console.log({items});
+    
+    this.#createSelectedOptionsList(items.filter(item => value?.includes(item.id)));
+    this.#selectEvents.processSelections(value);
+  }
+
+  #removeFilteredOptions() {
+    this.#selectEvents.removeEvents();
     const itemsToRemove = this.#selectedTagsContainerDOM.querySelectorAll(`li[data-type="${this.#id}"]`);
     
     itemsToRemove.forEach(item => item.remove());
+  }
+  
+  /**
+   * 
+   * @param {{ id: string, label: string }[]} items 
+   */
+  #createSelectedOptionsList(items) {
+    items.forEach((item) => {
+      const listItemDOM = this.#getFilterLiDOM(item);
+      listItemDOM.dataset.type = this.#id;
 
-    !!value && this.#itemsListDOM.childNodes.forEach(node => {
-      if (value.includes(node.dataset.id)) {
-        const copiedNode = node.cloneNode(true);
-        copiedNode.dataset.type = this.#id;
+      const deleteTagBtn = document.createElement("button");
+      deleteTagBtn.classList.add("delete-tag", "btn", "outline-none", "p-1");
+      deleteTagBtn.type = "button";
+      deleteTagBtn.appendChild(SvgDOM.crossSvg());
+      listItemDOM.appendChild(deleteTagBtn);
 
-        const deleteTagBtn = document.createElement("button");
-        deleteTagBtn.classList.add("delete-tag", "btn", "outline-none", "p-1");
-        deleteTagBtn.type = "button";
-        deleteTagBtn.appendChild(SvgDOM.crossSvg());
-        copiedNode.appendChild(deleteTagBtn);
-
-        this.#selectedTagsContainerDOM.appendChild(copiedNode);
-      }     
-    });
-
-    this.#selectEvents.processSelections(value);
+      this.#selectedTagsContainerDOM.appendChild(listItemDOM);
+    })
   }
 
   displayData(recipesList) {
@@ -150,7 +173,7 @@ export default class SelectOptionsTemplate {
     
     this.#addOptionsToList(selectItemsElements);
     this.#selectEvents.createEvents();
-    this.#processSelections();
+    this.#processSelections(selectItemsElements);
   }
 
   updateData(recipesList) {
@@ -160,7 +183,7 @@ export default class SelectOptionsTemplate {
     const selectItemsElements = this.#filterElements(recipesList);
     
     this.#updateOptionsList(selectItemsElements);
-    this.#processSelections();
+    this.#processSelections(selectItemsElements);
   }
   
 }
