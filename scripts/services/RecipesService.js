@@ -30,16 +30,16 @@ export default class RecipesService {
    * @param {string} query 
    */
   #filterWithQueryString(recipes, query) {
+    const lowercaseQuery = query.toLowerCase();
     let filteredRecipes = [];
-    query = query.toLowerCase();
 
     for (let i = 0; i < recipes.length; i++) {
         const current = recipes[i];
 
         if (
-            (current.name && current.name.toLowerCase().includes(query)) ||
-            (current.description && current.description.toLowerCase().includes(query)) ||
-            (current.appliance && current.appliance.toLowerCase().includes(query))
+            (current.name && current.name.toLowerCase().includes(lowercaseQuery)) ||
+            (current.description && current.description.toLowerCase().includes(lowercaseQuery)) ||
+            (current.appliance && current.appliance.toLowerCase().includes(lowercaseQuery))
         ) {
             filteredRecipes.push(current);
             continue;
@@ -47,7 +47,7 @@ export default class RecipesService {
 
         const recipeIngredients = current.ingredients ?? [];
         for (let ingIndex = 0; ingIndex < recipeIngredients.length; ingIndex++) {
-            if (recipeIngredients[ingIndex]?.ingredient && recipeIngredients[ingIndex].ingredient.toLowerCase().includes(query)) {
+            if (recipeIngredients[ingIndex]?.ingredient && recipeIngredients[ingIndex].ingredient.toLowerCase().includes(lowercaseQuery)) {
                 filteredRecipes.push(current);
                 break;
             }
@@ -55,7 +55,7 @@ export default class RecipesService {
 
         const recipeUstensils = current.ustensils ?? [];
         for (let ustIndex = 0; ustIndex < recipeUstensils.length; ustIndex++) {
-            if (recipeUstensils[ustIndex] && recipeUstensils[ustIndex].toLowerCase().includes(query)) {
+            if (recipeUstensils[ustIndex] && recipeUstensils[ustIndex].toLowerCase().includes(lowercaseQuery)) {
                 filteredRecipes.push(current);
                 break;
             }
