@@ -45,17 +45,15 @@ export default class RecipesService {
             continue;
         }
 
-        const recipeIngredients = current.ingredients ?? [];
-        for (let ingIndex = 0; ingIndex < recipeIngredients.length; ingIndex++) {
-            if (recipeIngredients[ingIndex]?.ingredient && recipeIngredients[ingIndex].ingredient.toLowerCase().includes(lowercaseQuery)) {
+        for (let ingIndex = 0; ingIndex < current.ingredients?.length ?? 0; ingIndex++) {
+            if (current.ingredients?.[ingIndex]?.ingredient && current.ingredients?.[ingIndex].ingredient.toLowerCase().includes(lowercaseQuery)) {
                 filteredRecipes.push(current);
                 break;
             }
         }
 
-        const recipeUstensils = current.ustensils ?? [];
-        for (let ustIndex = 0; ustIndex < recipeUstensils.length; ustIndex++) {
-            if (recipeUstensils[ustIndex] && recipeUstensils[ustIndex].toLowerCase().includes(lowercaseQuery)) {
+        for (let ustIndex = 0; ustIndex < current.ustensils?.length ?? 0; ustIndex++) {
+            if (current.ustensils?.[ustIndex] && current.ustensils?.[ustIndex].toLowerCase().includes(lowercaseQuery)) {
                 filteredRecipes.push(current);
                 break;
             }
