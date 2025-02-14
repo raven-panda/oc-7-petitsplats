@@ -55,6 +55,8 @@ export default class IndexPageEvents {
     // Display the filtered recipes
     this.#recipesTemplate.displayData(this.#recipesList);
 
+    this.#searchAllFormEvents.displayFormData();
+
     // Display data of each filter select controls
     this.#ingredientsSelectTemplate.displayData(this.#recipesList);
     this.#applianceSelectTemplate.displayData(this.#recipesList);
@@ -74,6 +76,7 @@ export default class IndexPageEvents {
 
     this.#recipesTemplate.updateData(this.#recipesList);
 
+    this.#searchAllFormEvents.displayFormData();
     this.#ingredientsSelectTemplate.updateData(this.#recipesList);
     this.#applianceSelectTemplate.updateData(this.#recipesList);
     this.#ustensilsSelectTemplate.updateData(this.#recipesList);
@@ -89,7 +92,7 @@ export default class IndexPageEvents {
     // Remove link event binding that shows up when no recipe is found
     this.#removeFiltersLink.addEventListener("click", (e) => {
       e.preventDefault();
-      this.#urlService.removeParam("queryString");
+      this.#urlService.removeParam("input-query");
       this.#urlService.removeParam("ingredients");
       this.#urlService.removeParam("appliance");
       this.#urlService.removeParam("ustensils");
