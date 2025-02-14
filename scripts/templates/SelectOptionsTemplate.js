@@ -6,13 +6,12 @@ export default class SelectOptionsTemplate {
   // Component props
   #id;
   #isMultiSelect;
-  #onChangeCallback;
 
   // Services props
   #urlService;
 
   // Events props
-  #selectEvents
+  #selectEvents;
 
   // DOM Elements props
   #containerDOM;
@@ -21,26 +20,25 @@ export default class SelectOptionsTemplate {
 
   constructor(id, urlService, onChangeCallback, isMultiSelect = false) {
     if (!id)
-      throw new ReferenceError(`Parameter 'id' must be specified.`)
-    if (!!isMultiSelect && !isMultiSelect instanceof Boolean)
-      throw new ReferenceError(`Parameter 'isMultiSelect' must be a boolean.`)
+      throw new ReferenceError("Parameter 'id' must be specified.");
+    if (!!isMultiSelect && !(isMultiSelect instanceof Boolean))
+      throw new ReferenceError("Parameter 'isMultiSelect' must be a boolean.");
     
     const escapedId = StringUtils.escapeHtml(id);
     this.#id = escapedId;
     this.#urlService = urlService;
-    this.#onChangeCallback = onChangeCallback;
     this.#isMultiSelect = isMultiSelect;
 
     this.#containerDOM = document.querySelector(`#input-select_${escapedId}`);
     if (!this.#containerDOM)
-      throw new ReferenceError(`Select container element with ID 'input-select_${escapedId}' not found.`)
+      throw new ReferenceError(`Select container element with ID 'input-select_${escapedId}' not found.`);
 
     this.#itemsListDOM = this.#containerDOM.querySelector("ul.lpp_select-list");
     if (!this.#itemsListDOM)
       throw new ReferenceError(`Ul element with class 'lpp_select-list' in Select container 'input-select_${escapedId}' not found.`);
 
     this.#selectEvents = new FormSelectEvents(escapedId, urlService, onChangeCallback, isMultiSelect);
-    this.#selectedTagsContainerDOM = document.querySelector("#lpp_selected-tags-container")
+    this.#selectedTagsContainerDOM = document.querySelector("#lpp_selected-tags-container");
   }
 
   #filterElements(recipesList) {
@@ -60,7 +58,7 @@ export default class SelectOptionsTemplate {
         const escapedItem = StringUtils.escapeHtml(recipe[this.#id]);
         !selectItems.includes(escapedItem.toLowerCase()) && selectItems.push(escapedItem.toLowerCase());
       }
-    })
+    });
 
     return selectItems.sort((a, b) => a < b ? -1 : a > b ? 1 : 0).map(item => ({ id: item, label: item }));
   }
@@ -111,7 +109,7 @@ export default class SelectOptionsTemplate {
         const listItemDOM = this.#getFilterLiDOM(item);
         this.#itemsListDOM.appendChild(listItemDOM);
       }
-    })
+    });
   }
 
   /**
@@ -163,7 +161,7 @@ export default class SelectOptionsTemplate {
       listItemDOM.appendChild(deleteTagBtn);
 
       this.#selectedTagsContainerDOM.appendChild(listItemDOM);
-    })
+    });
   }
 
   displayData(recipesList) {
@@ -176,7 +174,7 @@ export default class SelectOptionsTemplate {
 
   updateData(recipesList) {
     this.#itemsListDOM = this.#containerDOM.querySelector("ul.lpp_select-list");
-    this.#selectedTagsContainerDOM = document.querySelector("#lpp_selected-tags-container")
+    this.#selectedTagsContainerDOM = document.querySelector("#lpp_selected-tags-container");
 
     const selectItemsElements = this.#filterElements(recipesList);
     
