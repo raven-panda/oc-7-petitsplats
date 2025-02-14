@@ -19,9 +19,9 @@ export default class RecipesService {
       allRecipes = this.#filterWithQueryString(allRecipes, value.queryString);
     
     return value ? allRecipes
-        .filter(recipe => !recipe.ingredients || !value.ingredients || value.ingredients.every(valIng => recipe.ingredients.some(recIng => recIng.ingredient.toLowerCase() === valIng.toLowerCase())))
-        .filter(recipe => !recipe.appliance || !value.appliance || recipe.appliance.toLowerCase() === value.appliance.toLowerCase())
-        .filter(recipe => !recipe.ustensils || !value.ustensils || value.ustensils.every(valUst => recipe.ustensils.map(ust => ust.toLowerCase()).includes(valUst.toLowerCase())))
+        .filter(recipe => !value.ingredients || (recipe.ingredients && value.ingredients.every(valIng => recipe.ingredients.some(recIng => recIng.ingredient.toLowerCase() === valIng.toLowerCase()))))
+        .filter(recipe => !value.appliance || (recipe.appliance && recipe.appliance.toLowerCase() === value.appliance.toLowerCase()))
+        .filter(recipe => !value.ustensils || (recipe.ustensils && value.ustensils.every(valUst => recipe.ustensils.map(ust => ust.toLowerCase()).includes(valUst.toLowerCase()))))
       : allRecipes;
   }
 
