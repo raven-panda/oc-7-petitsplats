@@ -17,7 +17,7 @@ export default class RecipeCardDOM {
 
   #createCardImg(src, alt) {
     const img = document.createElement("img");
-    img.classList.add("card-img-top", "object-fit-cover")
+    img.classList.add("card-img-top", "object-fit-cover");
     img.src = src;
     img.alt = alt;
     img.width = 380; 
@@ -84,7 +84,7 @@ export default class RecipeCardDOM {
       }
 
       ingredientsSection.appendChild(ingredientContainer);
-    })
+    });
 
     return ingredientsSection;
   }

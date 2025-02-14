@@ -16,9 +16,9 @@ export default class FormSelectEvents {
 
   constructor(id, urlService, onChangeCallback, isMultiSelect = false) {
     if (!id)
-      throw new ReferenceError(`Parameter id must be specified.`)
+      throw new ReferenceError("Parameter id must be specified.");
     if (!urlService)
-      throw new ReferenceError(`Select event fed with ID 'input-select_${id}' is missing 'UrlService' parameter.`)
+      throw new ReferenceError(`Select event fed with ID 'input-select_${id}' is missing 'UrlService' parameter.`);
 
     this.#id = id;
     this.#urlService = urlService;
@@ -27,7 +27,7 @@ export default class FormSelectEvents {
 
     this.#containerDOM = document.querySelector(`#input-select_${id}`);
     if (!this.#containerDOM)
-      throw new ReferenceError(`Select container element with ID 'input-select_${id}' not found.`)
+      throw new ReferenceError(`Select container element with ID 'input-select_${id}' not found.`);
 
     this.#selectButtonDOM = this.#containerDOM.querySelector("button");
     if (!this.#selectButtonDOM)
@@ -41,9 +41,9 @@ export default class FormSelectEvents {
     if (!this.#itemsListDOM)
       throw new ReferenceError(`Ul element with class 'lpp_select-list' in Select container 'input-select_${id}' not found.`);
 
-    this.#selectedTagsListDOM = document.querySelector(`ul#lpp_selected-tags-container`);
+    this.#selectedTagsListDOM = document.querySelector("ul#lpp_selected-tags-container");
     if (!this.#itemsListDOM)
-      throw new ReferenceError(`Ul element with id 'lpp_selected-tags-container' not found.`);
+      throw new ReferenceError("Ul element with id 'lpp_selected-tags-container' not found.");
   }
  
   /**
@@ -80,7 +80,7 @@ export default class FormSelectEvents {
         node.removeAttribute("ariaHidden");
       }
         
-    })
+    });
   }
 
   /**
@@ -115,7 +115,7 @@ export default class FormSelectEvents {
       } else {
         node.removeAttribute("aria-selected");
       }
-    })
+    });
 
     this.updateListEvents();
   }

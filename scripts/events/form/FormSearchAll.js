@@ -21,7 +21,7 @@ export default class FormSearchAllEvents {
 
   constructor(id, urlService, onChangeCallback) {
     if (!id)
-      throw new ReferenceError(`Parameter ID must be defined.`)
+      throw new ReferenceError("Parameter ID must be defined.");
 
     this.#id = StringUtils.escapeHtml(id);
     this.#urlService = urlService;
@@ -50,14 +50,14 @@ export default class FormSearchAllEvents {
   }
 
   onInputChangeCallback(e) {
-    if (!!e.currentTarget.value) {
+    if (e.currentTarget.value) {
       this.#clearInputBtnDOM.classList.remove("d-none");
     } else {
       this.#clearInputBtnDOM.classList.add("d-none");
     }
   }
 
-  onClearButtonCallback(e) {
+  onClearButtonCallback() {
     this.#inputDOM.value = "";
     this.#clearInputBtnDOM.classList.remove("d-none");
     this.onFormSubmitCallback();
@@ -67,7 +67,7 @@ export default class FormSearchAllEvents {
     e?.preventDefault();
     const formData = new FormData(this.#formDOM);
     
-    if (!!formData.get("input-query")) {
+    if (formData.get("input-query")) {
       this.#urlService.setUrlParam("input-query", StringUtils.escapeHtml(formData.get("input-query")?.trim()));
     } else {
       this.#urlService.removeParam("input-query");
@@ -78,7 +78,7 @@ export default class FormSearchAllEvents {
 
   displayFormData() {
     this.#inputDOM.value = this.#urlService.getUrlParam("input-query");
-
+    
     if (!this.#inputDOM.value)
       this.#clearInputBtnDOM.classList.add("d-none");
     else
