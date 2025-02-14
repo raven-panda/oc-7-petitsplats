@@ -16,6 +16,7 @@ export default [
       semi: ["error", "always"],
       "no-unused-vars": ["warn"],
       "no-unused-private-class-members": ["warn"],
+      "no-extra-parens": ["warn"],
       "no-extra-boolean-cast": ["warn"],
       eqeqeq: ["error", "always"],
     }
