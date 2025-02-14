@@ -9,7 +9,7 @@ export default class RecipeCardDOM {
     const article = document.createElement("article");
     article.classList.add("lpp_recipe-card", "card");
 
-    article.appendChild(this.#createCardImg("../../../assets/pictures/recipes/" + imageName, "Image de " + recipeTitle));
+    article.appendChild(this.#createCardImg("./assets/pictures/recipes/" + imageName, "Image de " + recipeTitle));
     article.appendChild(this.#createCardBody(recipeTitle, recipeDescription, ingredients));
 
     return article;
