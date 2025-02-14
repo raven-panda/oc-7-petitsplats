@@ -2,7 +2,7 @@ export default class SvgDOM {
 
   static crossSvg() {
     const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svgElement.setAttribute("width", 17)
+    svgElement.setAttribute("width", 17);
     svgElement.setAttribute("height", 17);
     svgElement.setAttribute("viewBox", "0 0 17 17");
     svgElement.classList.add("d-block");

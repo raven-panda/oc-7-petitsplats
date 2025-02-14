@@ -1,0 +1,13 @@
+{
+  "name": "7-petitsplats",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "author": "Ambroise Maire",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "eslint": "^9.20.1",
+    "globals": "^15.15.0"
+  }
+}

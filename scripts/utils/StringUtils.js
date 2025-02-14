@@ -10,12 +10,12 @@ export default class StringUtils {
       return null;
     
     const entities = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        '`': '&#96;',
-        '/': '&#x2F;'
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "`": "&#96;",
+        "/": "&#x2F;"
     };
 
     return str.replace(/[&<>"`/]/g, char => entities[char]);

@@ -15,7 +15,7 @@ export default class RecipesService {
    */
   async searchRecipes(value) {
     let allRecipes = await this.getAllRecipes();
-    if (!!value.queryString)
+    if (value.queryString)
       allRecipes = this.#filterWithQueryString(allRecipes, value.queryString);
     
     return value ? allRecipes
