@@ -30,8 +30,10 @@ export default class RecipesService {
    * @param {string} query 
    */
   #filterWithQueryString(recipes, query) {
+    // Remove case for proper search
     const lowerQuery = query.toLowerCase();
 
+    // Using filter method on all recipe properties to check if one match
     return recipes.filter(recipe => 
         recipe.name?.toLowerCase().includes(lowerQuery) ||
         recipe.description?.toLowerCase().includes(lowerQuery) ||
