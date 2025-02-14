@@ -26,38 +26,51 @@ export default class RecipesService {
   }
 
   /**
+   * Filter with the search form
    * @param {any[]} recipes 
    * @param {string} query 
    */
   #filterWithQueryString(recipes, query) {
+    // Remove case for proper search
     const lowercaseQuery = query.toLowerCase();
+    // Instantiate final recipes array
     let filteredRecipes = [];
 
+    // Going through the given list
+    mainLoop:
     for (let i = 0; i < recipes.length; i++) {
-        const current = recipes[i];
+      // Put the current recipe in a const for readability
+      const current = recipes[i];
 
-        if (
-            (current.name && current.name.toLowerCase().includes(lowercaseQuery)) ||
-            (current.description && current.description.toLowerCase().includes(lowercaseQuery)) ||
-            (current.appliance && current.appliance.toLowerCase().includes(lowercaseQuery))
-        ) {
+      // Push current in final array if name, description or appliance match the query body
+      // and go to the next iteration (continue statement)
+      if (
+          (current.name && current.name.toLowerCase().includes(lowercaseQuery)) ||
+          (current.description && current.description.toLowerCase().includes(lowercaseQuery)) ||
+          (current.appliance && current.appliance.toLowerCase().includes(lowercaseQuery))
+      ) {
+          filteredRecipes.push(current);
+          continue;
+      }
+
+      // If the precedent condition didn't match, go through ingredients and push current in final array
+      // if one ingredient match and go to the next iteration (break statement)
+      for (let ingIndex = 0; ingIndex < current.ingredients?.length ?? 0; ingIndex++) {
+          if (current.ingredients?.[ingIndex]?.ingredient && current.ingredients?.[ingIndex].ingredient.toLowerCase().includes(lowercaseQuery)) {
+              filteredRecipes.push(current);
+              recipeFound = true;
+              continue mainLoop;
+          }
+      }
+
+      // If no ingredients matched, go through ustensils and push current in final array
+      // if one ustensil match and go to the next iteration (break statement)
+      for (let ustIndex = 0; ustIndex < current.ustensils?.length ?? 0; ustIndex++) {
+        if (current.ustensils?.[ustIndex] && current.ustensils?.[ustIndex].toLowerCase().includes(lowercaseQuery)) {
             filteredRecipes.push(current);
-            continue;
+            continue mainLoop;
         }
-
-        for (let ingIndex = 0; ingIndex < current.ingredients?.length ?? 0; ingIndex++) {
-            if (current.ingredients?.[ingIndex]?.ingredient && current.ingredients?.[ingIndex].ingredient.toLowerCase().includes(lowercaseQuery)) {
-                filteredRecipes.push(current);
-                break;
-            }
-        }
-
-        for (let ustIndex = 0; ustIndex < current.ustensils?.length ?? 0; ustIndex++) {
-            if (current.ustensils?.[ustIndex] && current.ustensils?.[ustIndex].toLowerCase().includes(lowercaseQuery)) {
-                filteredRecipes.push(current);
-                break;
-            }
-        }
+      }
     }
 
     return filteredRecipes;

@@ -135,8 +135,6 @@ export default class SelectOptionsTemplate {
   #processSelections(items) {
     this.#removeFilteredOptions();
     const value = this.#urlService.getUrlParam(this.#id);    
-
-    console.log({items});
     
     this.#createSelectedOptionsList(items.filter(item => value?.includes(item.id)));
     this.#selectEvents.processSelections(value);
