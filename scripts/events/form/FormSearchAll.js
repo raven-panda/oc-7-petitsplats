@@ -59,7 +59,7 @@ export default class FormSearchAllEvents {
 
   onClearButtonCallback(e) {
     this.#inputDOM.value = "";
-    this.#clearInputBtnDOM.classList.add("d-none");
+    this.#clearInputBtnDOM.classList.remove("d-none");
     this.onFormSubmitCallback();
   }
 
@@ -74,5 +74,14 @@ export default class FormSearchAllEvents {
     }
 
     this.#onChangeCallback();
+  }
+
+  displayFormData() {
+    this.#inputDOM.value = this.#urlService.getUrlParam("input-query");
+
+    if (!this.#inputDOM.value)
+      this.#clearInputBtnDOM.classList.add("d-none");
+    else
+      this.#clearInputBtnDOM.classList.remove("d-none");
   }
 }
