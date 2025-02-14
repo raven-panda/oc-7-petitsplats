@@ -45,9 +45,9 @@ export default class RecipesService {
       // Push current in final array if name, description or appliance match the query body
       // and go to the next iteration (continue statement)
       if (
-          (current.name && current.name.toLowerCase().includes(lowercaseQuery)) ||
-          (current.description && current.description.toLowerCase().includes(lowercaseQuery)) ||
-          (current.appliance && current.appliance.toLowerCase().includes(lowercaseQuery))
+          current.name && current.name.toLowerCase().includes(lowercaseQuery) ||
+          current.description && current.description.toLowerCase().includes(lowercaseQuery) ||
+          current.appliance && current.appliance.toLowerCase().includes(lowercaseQuery)
       ) {
           filteredRecipes.push(current);
           continue;
