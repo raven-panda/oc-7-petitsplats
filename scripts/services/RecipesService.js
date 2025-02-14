@@ -55,17 +55,16 @@ export default class RecipesService {
 
       // If the precedent condition didn't match, go through ingredients and push current in final array
       // if one ingredient match and go to the next iteration (break statement)
-      for (let ingIndex = 0; ingIndex < current.ingredients?.length ?? 0; ingIndex++) {
+      for (let ingIndex = 0; ingIndex < (current.ingredients?.length ?? 0); ingIndex++) {
           if (current.ingredients?.[ingIndex]?.ingredient && current.ingredients?.[ingIndex].ingredient.toLowerCase().includes(lowercaseQuery)) {
               filteredRecipes.push(current);
-              recipeFound = true;
               continue mainLoop;
           }
       }
 
       // If no ingredients matched, go through ustensils and push current in final array
       // if one ustensil match and go to the next iteration (break statement)
-      for (let ustIndex = 0; ustIndex < current.ustensils?.length ?? 0; ustIndex++) {
+      for (let ustIndex = 0; ustIndex < (current.ustensils?.length ?? 0); ustIndex++) {
         if (current.ustensils?.[ustIndex] && current.ustensils?.[ustIndex].toLowerCase().includes(lowercaseQuery)) {
             filteredRecipes.push(current);
             continue mainLoop;
